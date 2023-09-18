@@ -1,0 +1,28 @@
+.containor{
+    display: flex;
+    align-items: center;
+
+img{
+ height: 90%;
+ width: 90%;
+    flex: 1;
+}
+
+.desSec{
+
+    flex: 1;
+    p{
+      width: 99%;
+    }
+}
+
+
+
+    .Check{
+        padding: 7px 20px;
+        background-color: #a08152;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+}
