@@ -4,7 +4,8 @@ import Navbar from '../components/Navbar'
 import Baner from '../components/Baner'
 import NewsLeter from '../components/NewsLeter'
 import Footer from '../components/Footer'
-import P1 from '../components/images/c6.avif'
+import P1 from '../components/images/c5.avif'
+import { Add, Remove } from '@mui/icons-material'
 const OneProduct = () => {
     const Container = styled.div``
     const Wrapper = styled.div`
@@ -53,11 +54,20 @@ const Filter= styled.div`
 display: flex;
 align-items: center;
 `
+
+const FilterColOpt= styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+`
+
 const FilterColor= styled.div`
 width: 20px;
 height: 20px;
 border-radius: 50%;
 background-color: ${props=>props.color};
+margin-left:10px;
 `
 const FilterTitle= styled.h4`
 font-size:20px;
@@ -65,6 +75,33 @@ font-weight:300;
 `
 const FilterSize= styled.select``
 const FilterSizeOpt= styled.option``
+
+const AddContainor= styled.div`
+width:50%;
+`
+const AmountConatainor= styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+`
+const Amount= styled.div`
+padding:5px 10px;
+border-radius: 8px;
+
+border:1px solid #a08152;
+`
+const BtnOpt = styled.div`
+display: flex;
+align-items: center;
+
+`
+const Button= styled.button`
+padding:14px;
+border:2px solid #a08152;
+cursor: pointer;
+
+`
 
   return (
     <div>
@@ -80,12 +117,16 @@ const FilterSizeOpt= styled.option``
   <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore expedita accusantium inventore impedit nulla, veniam vel obcaecati tenetur nemo minus nisi placeat ipsam sed delectus. At corrupti expedita nesciunt quibusdam?</Description>
 <Price>200$</Price>
 <FilterContainor>
+  <Filter>
   <FilterTitle>
 Color
   </FilterTitle>
+  <FilterColOpt>
   <FilterColor color="red"/>
   <FilterColor  color="blue"/>
   <FilterColor  color="gray"/>
+  </FilterColOpt>
+  </Filter>
   <Filter>
     <FilterTitle>Size</FilterTitle>
     <FilterSize>
@@ -97,6 +138,17 @@ Color
     </FilterSize>
   </Filter>
 </FilterContainor>
+<AddContainor>
+<AmountConatainor>
+  <BtnOpt>
+<Remove/>
+<Amount>1</Amount>
+<Add/>
+  </BtnOpt>
+<Button>ADD TO CART</Button>
+</AmountConatainor>
+</AddContainor>
+
 </InfoContainer>
         </Wrapper>
         <NewsLeter/>
