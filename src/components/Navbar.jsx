@@ -5,6 +5,9 @@ import LogoE from "./images/logoE.png"
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import { Badge } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import {mobile} from '../responsive'
+import {tablets} from '../responsive'
+import {sub_mobiles} from '../responsive'
 const Navbar = () => {
   const Container = styled.div`
   height: 80px;
@@ -17,6 +20,8 @@ margin-bottom:10px
   display: flex;
   justify-content: space-between;
 align-items: center;
+${mobile({padding:"4px"})}
+
 
 `;
   const Left = styled.div`
@@ -24,11 +29,14 @@ align-items: center;
   `
   const Center = styled.div`
   text-align: center;
-  
   flex: 1;
+  width="50px";
+
   `
 
-  const Logo = styled.div`
+  const Logo = styled.img`
+  ${mobile({width:"50px"})}
+  width="50px"
   
  `
   const Language = styled.span`
@@ -38,17 +46,27 @@ align-items: center;
 
 
 `
+const Eng= styled.div`
+${mobile({display:"none"})}
+
+`
 
   const SearchContainor = styled.div`
 border: 1px solid lightgray;
 display: flex;
 align-items: center;
 border-radius:5px
+${mobile({display:"block"})}
+${tablets({padding:"0px 5px"})}
+
 `
   const Input = styled.input`
 border:none;
 outline:none;
 padding:7px;
+${mobile({width:"40px"})}
+${tablets({width:"100%"})}
+
 
 
 `
@@ -75,16 +93,17 @@ font-size: 14px;
         <Wrapper>
           <Left>
             <Language>
+              <Eng>
               EN
+              </Eng>
               <SearchContainor>
-                <Input />
+                <Input placeholder='Search' />
                 <SearchIcon style={{color:"grey", fontSize:20}}/>
               </SearchContainor>
             </Language>
           </Left>
           <Center>
-            <Logo>
-              <img src={LogoE} alt='logo' width="100px" />
+            <Logo src={LogoE} alt='logo' width={"80px"}>
             </Logo>
           </Center>
           <Right>
@@ -101,3 +120,6 @@ font-size: 14px;
 }
 
 export default Navbar
+
+
+

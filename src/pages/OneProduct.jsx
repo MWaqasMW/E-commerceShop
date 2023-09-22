@@ -6,22 +6,34 @@ import NewsLeter from '../components/NewsLeter'
 import Footer from '../components/Footer'
 import P1 from '../components/images/c5.avif'
 import { Add, Remove } from '@mui/icons-material'
+import {mobile, tablets} from '../responsive'
 const OneProduct = () => {
     const Container = styled.div``
     const Wrapper = styled.div`
     display:flex;
     padding:50px;
+    flex-wrap-wrap;
+    justify-content: space-between;
+    
+    ${tablets({flexDirection:"column"})}
+    ${tablets({padding:"15px"})}
 
     `
     const ImageContainer = styled.div`  flex:1
-    flex-wrap-wrap;
+    width: 400px;
+    height: 500px;
+    overflow: hidden;
+    justify-content: left;
+
+    ${tablets({width:"100%"})}
+
     ;
     
     `
     const Image = styled.img`
     width: 100%;
-height: 90vh;
-object-fit: contain;
+    height: 100%;
+    object-fit: contain; 
     `
     const InfoContainer = styled.div`
     flex:1;

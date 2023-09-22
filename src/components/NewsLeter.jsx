@@ -1,6 +1,8 @@
 import { Send, Title } from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
+import {mobile} from '../responsive'
+import {sub_mobiles} from '../responsive'
 
 const NewsLeter = () => {
 
@@ -13,11 +15,16 @@ align-items: center;
 background-color: #fffcff;
 flex-direction: column;
 background-color: lightgray;
+padding:20px;
+
+${sub_mobiles({height:"70%"})}
 
 `
 const Title=styled.h1` 
 font-size: 70px;
 margin-bottom: 10px;
+${sub_mobiles({fontSize:"50px"})}
+
 `
 const Description=styled.p`
 font-size: 24px;
@@ -27,7 +34,8 @@ text-align: center;
 
 `
 const InputContainor=styled.div`
-width: 50%;
+min-width:200px;
+max-width: 400px;
 height: 40px;
 background-color: #fff;
 display: flex;

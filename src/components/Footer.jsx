@@ -3,11 +3,17 @@ import styled from 'styled-components'
 import Logo from './images/logoE.png'
 import { Email, Facebook, GitHub, LinkedIn, MailOutline, Phone, Room, Twitter, WhatsApp } from '@mui/icons-material'
 import payment from "./images/Payment-Background-PNG-removebg-preview.png"
+import {mobile} from '../responsive'
+import {tablets} from '../responsive'
+import { sub_mobiles } from '../responsive'
+
 const Footer = () => {
 
     const Containor = styled.div`
     display: flex;
-    
+    flex-wrap:wrap;
+${tablets({display:"block"})}
+
     `
     const Left = styled.div`
     flex:1;
@@ -36,7 +42,8 @@ background-color: ${props => props.color};
 display: flex;
 justify-content: center;
 align-items: center;
-margin-left:20px
+margin-left:5px
+
 `;
     // fac #4267B2 , Inst   radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);,  
     //twit #1DA1F2,  linkim   #0072b1   , github #4078c0
@@ -65,13 +72,14 @@ margin-bottom:15px;
     const Right = styled.div`
     flex:1;
     margin-top:20px;
+    padding:20px;
     `
-const ContactItem= styled.div`
+    const ContactItem = styled.div`
 margin-bottom:20px;
 display: flex;
 align-items: center;
 `
-const Payment= styled.img`
+    const Payment = styled.img`
 width:200px;
 `
 
@@ -129,16 +137,16 @@ width:200px;
                         Contact
                     </Title>
                     <ContactItem>
-               <Room style={{marginRight:"20px"}}/>   810 House Plaza Street,West Karachi
+                        <Room style={{ marginRight: "20px" }} />   810 House Plaza Street,West Karachi
                     </ContactItem>
                     <ContactItem>
-                   <Phone style={{marginRight:"20px"}}/> NTN Number : 4012165-6
-                    STRN Number : 1700401243518
+                        <Phone style={{ marginRight: "20px" }} /> NTN Number : 4012165-6
+                        STRN Number : 1700401243518
                     </ContactItem>
                     <ContactItem>
-            <MailOutline style={{marginRight:"20px"}}/>  nestContact@gmail.com
+                        <MailOutline style={{ marginRight: "20px" }} />  nestContact@gmail.com
                     </ContactItem>
-                    <Payment src={payment}/>
+                    <Payment src={payment} />
                 </Right>
 
 

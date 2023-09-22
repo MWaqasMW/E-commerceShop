@@ -5,6 +5,7 @@ import Baner from '../components/Baner'
 import Product from '../components/Product'
 import NewsLeter from '../components/NewsLeter'
 import Footer from '../components/Footer'
+import {sub_mobiles} from '../responsive'
 
 const ProductList = () => {
 
@@ -14,6 +15,7 @@ const Title =styled.h1``
 const FilterContainer= styled.div`
 display: flex;
 justify-content: space-between;
+    ${sub_mobiles({flexDirection:"column-reverse"})}
 
 `
 const Filter= styled.div`

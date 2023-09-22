@@ -25,8 +25,8 @@ const Productss = ({ item }) => {
     console.log(item)
     const Container = styled.div`
     flex:1;
-    margin: 5px;
-    min-width: 280px;
+    margin: 10px;
+    min-width: 250px;
     height: 350px;
     display: flex;
     align-items: center;
