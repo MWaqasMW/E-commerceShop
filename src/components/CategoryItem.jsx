@@ -1,10 +1,8 @@
-import { Title } from '@mui/icons-material'
-import { Button } from 'bootstrap'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const CategoryItem = ({ item }) => {
-  console.log("dsfddsf", item)
 
   const Container = styled.div`
 flex:1;
@@ -26,7 +24,6 @@ width: 100%;
 height: 100%;
 display: flex;
 flex-direction: column;
-
 align-items: center;
 justify-content: center;
 
@@ -40,6 +37,7 @@ justify-content: center;
 padding: 10px 20px;
 background-color: #a08152;
 color: #fff;
+outline:none;
 border-radius: 5px;
 margin-top: 20px;
 cursor: pointer;
@@ -50,6 +48,7 @@ cursor: pointer;
     <div>
 
       <Container>
+        <Link to={`/products/${item && item.cat}`}>
         <Image src={item && item.img} />
         <Info>
           <Title>
@@ -59,6 +58,7 @@ cursor: pointer;
             Shop Now
           </Button>
         </Info>
+        </Link>
       </Container>
     </div>
   )

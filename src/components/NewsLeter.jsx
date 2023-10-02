@@ -1,7 +1,6 @@
-import { Send, Title } from '@mui/icons-material'
+import { Send} from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
-import {mobile} from '../responsive'
 import {sub_mobiles} from '../responsive'
 
 const NewsLeter = () => {

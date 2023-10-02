@@ -9,7 +9,8 @@ const Categories = () => {
     const Container=styled.div`
     display: flex;
  align-items: center;
-justify-content: center;
+justify-content: space-evenly;
+margin:10px;
 ${tablets({display:"block"})}
 
     `

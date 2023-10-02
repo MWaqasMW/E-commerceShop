@@ -1,10 +1,13 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
-
+import { Rating } from '@mui/material'
+import { tablets } from '../responsive'
+import "./slider.scss"
 
 const Productss = ({ item }) => {
     const Info = styled.div`
+    flex:1;
     opacity:0;
     background-color: gray;
     height: 100%;
@@ -19,19 +22,31 @@ const Productss = ({ item }) => {
     justify-content: center;
     transition:all 0.5s ease ;
     cursor: pointer;
-}
-    
+
+}    
+
     `
-    console.log(item)
-    const Container = styled.div`
+const Containor=styled.div`
+align-items: center;
+width:100%;
+${tablets({width:"100%"})}
+
+
+`
+
+    const ImageCaontainor = styled.div`
     flex:1;
-    margin: 10px;
+    margin: 2px;
     min-width: 250px;
-    height: 350px;
+    max-width:370px;
+${tablets({maxWidth:"none"})}
+
+    height:350px;
     display: flex;
     align-items: center;
     background-color: #FAF9F6;
     position: relative;
+    background-color: aliceblue;
     
     ;&& :hover${Info}{
         opacity:1;
@@ -50,7 +65,7 @@ const Productss = ({ item }) => {
     `
     const Image = styled.img`
     padding:10px;
-    height: 90%;
+    height: 100%;
     width:100%;
     z-index:2;
     object-fit: contain;
@@ -65,7 +80,7 @@ const Productss = ({ item }) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin:10px;
+    margin:2px;
     cursor: pointer;
     transition:all 0.5s ease ;
     && :hover{
@@ -73,10 +88,32 @@ const Productss = ({ item }) => {
     transform: scale(1.1);
 }
     `
+const MoreInfo=styled.div`
+flex:1;
+margin:8px;
+min-width: 250px;
+max-width:370px;
+${tablets({maxWidth:"none"})}
+
+`
+const Desc=styled.div`
+
+text-align: center;
+
+`
+const Price=styled.span`
+font-size: 30px;
+
+`
+const Rate=styled.span``
+
+
+
     return (
-        <div>
-            <Container>
+        <div className='p_containor'>
+            <Containor>
                 <Circle />
+                <ImageCaontainor>
                 <Image src={item && item.img} />
                 <Info>
                     <Icon>
@@ -89,7 +126,22 @@ const Productss = ({ item }) => {
                         <FavoriteBorderOutlined />
                     </Icon>
                 </Info>
-            </Container>
+                </ImageCaontainor>
+                <MoreInfo>
+
+                <Desc>
+                Lorem ips    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sapiente....
+                </Desc>
+                <div className='d-flex align-items-center mt-3 justify-content-center'  >
+                <Price>
+                    $80
+                </Price>
+                <Rate>
+                    <Rating name="read-only" value={3} readOnly />
+                </Rate>
+                </div>
+                </MoreInfo>
+            </Containor>
         </div>
     )
 }

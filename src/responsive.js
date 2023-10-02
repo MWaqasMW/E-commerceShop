@@ -24,3 +24,11 @@ export const tablets=(props)=>{
       }
       `;
 }
+export const sub_tablets=(props)=>{
+    return css`
+
+    @media only screen and (max-width: 1042px) {
+       ${props}
+      }
+      `;
+}

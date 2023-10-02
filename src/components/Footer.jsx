@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logo from './images/logoE.png'
-import { Email, Facebook, GitHub, LinkedIn, MailOutline, Phone, Room, Twitter, WhatsApp } from '@mui/icons-material'
+import {  Facebook, GitHub, LinkedIn, MailOutline, Phone, Room, Twitter, WhatsApp } from '@mui/icons-material'
 import payment from "./images/Payment-Background-PNG-removebg-preview.png"
-import {mobile} from '../responsive'
 import {tablets} from '../responsive'
-import { sub_mobiles } from '../responsive'
 
 const Footer = () => {
 

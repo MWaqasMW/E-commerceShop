@@ -4,10 +4,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LogoE from "./images/logoE.png"
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import { Badge } from '@mui/material';
-import { grey } from '@mui/material/colors';
 import {mobile} from '../responsive'
 import {tablets} from '../responsive'
-import {sub_mobiles} from '../responsive'
 const Navbar = () => {
   const Container = styled.div`
   height: 80px;
