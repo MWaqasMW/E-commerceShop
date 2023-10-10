@@ -4,8 +4,6 @@ import { Paper, Button } from '@mui/material'
 import S1 from './images/pants_1203-8310-removebg-preview.png'
 import S3 from './images/troser-removebg-preview.png'
 import S2 from './images/grey-folded-t-shirt_125540-812-removebg-preview.png'
-import {mobile} from '../responsive'
-import {sub_mobiles} from '../responsive'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

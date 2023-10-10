@@ -3,12 +3,11 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import styled from 'styled-components';
 import Baner from '../components/Baner';
-import Product from '../components/Product';
 import NewsLeter from '../components/NewsLeter';
 import Footer from '../components/Footer';
 import { sub_mobiles } from '../responsive';
 import { useLocation } from 'react-router-dom';
-
+import MoreProduct from '../components/moreProduct';
 const Container = styled.div``;
 
 const Title = styled.h1`
@@ -95,7 +94,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Product cat={cat} filters={filters} sort={sort} />
+        <MoreProduct cat={cat} filters={filters} sort={sort} />
         <NewsLeter />
         <Footer />
       </Container>

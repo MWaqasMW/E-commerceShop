@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import bg from '../components/images/c6.avif'
-import {sub_mobiles, tablets, mobile} from '../responsive'
+import {tablets } from '../responsive'
 
 const Login = () => {
    

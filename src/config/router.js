@@ -5,9 +5,9 @@ import ProductList from '../pages/ProductList';
 import Product from '../pages/OneProduct';
 import Home from '../pages/Home';
 import Cart from '../pages/Cart';
-
 const AppRouter = () => {
-  const user = false; // Set this to false to test the redirect
+  const user = true; // Set this to false to test the redirect
+  
 
   return (
     <BrowserRouter>
@@ -15,7 +15,7 @@ const AppRouter = () => {
         <Route
           path="/login"
           element={user ? <Navigate to="/" /> : <Login />}
-        />
+          />
         <Route
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
@@ -23,6 +23,8 @@ const AppRouter = () => {
         {/* Normal routes */}
         <Route exact path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/moreProducts/:category" element={<ProductList />} />
+        <Route path="/moreProduct/:id" element={<Product />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

@@ -1,15 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Baner from '../components/Baner'
 import NewsLeter from '../components/NewsLeter'
 import Footer from '../components/Footer'
-import P1 from '../components/images/c5.avif'
 import { Add, Remove } from '@mui/icons-material'
-import {mobile, tablets} from '../responsive'
+import {tablets} from '../responsive'
+import {useLocation} from 'react-router-dom'
+import { publicRequest } from '../requestMethods.js'
+import { useDispatch } from 'react-redux'
+import { addProduct } from '../redux/cartRedux'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 const OneProduct = () => {
-    const Container = styled.div``
-    const Wrapper = styled.div`
+
+
+
+
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+  const [product, setProducts]= useState({})
+  const [quantity,setQuantity]=useState(1);
+  const [size,setSize]= useState([])
+const dispatch = useDispatch()
+
+useEffect(()=>{
+const getProduct= async()=>{
+try{
+  const res = await publicRequest.get("moreProducts/find/"+id)
+  setProducts(res.data)
+}catch(err){
+  console.log(err)
+}
+
+}
+getProduct()
+
+
+},[id])
+
+const handleQuantity=(type)=>{
+if(type === "desc"){
+
+quantity > 1 &&  setQuantity(quantity -1)
+}else{
+  setQuantity(quantity +1)
+}
+}
+const handleClick=()=>{
+  dispatch(addProduct({...product, quantity}))
+};
+
+const Container = styled.div``
+const Wrapper = styled.div`
     display:flex;
     padding:50px;
     flex-wrap-wrap;
@@ -17,23 +61,31 @@ const OneProduct = () => {
     
     ${tablets({flexDirection:"column"})}
     ${tablets({padding:"15px"})}
-
+    
     `
-    const ImageContainer = styled.div`  flex:1
-    width: 400px;
-    height: 500px;
+    const ImageContainer = styled.div`  
+    flex:1;
+    ${tablets({flex:"none"})}
+    
+    max-width: 670px;
+    min-width: 200px;
+    height: 470px;
     overflow: hidden;
     justify-content: left;
 
-    ${tablets({width:"100%"})}
-
+    
     ;
     
     `
     const Image = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: contain; 
+    object-fit: contain;
+    background-image: url(${product.img});
+    background-size: contain;
+     background-position: center;
+        background-repeat: no-repeat;
+        
     `
     const InfoContainer = styled.div`
     flex:1;
@@ -43,16 +95,16 @@ const OneProduct = () => {
     const Title = styled.h3`
     font-size:30px;
     font-weight:700px;
-
+    
     `
     const Description = styled.p` 
     
     `
-const Price = styled.span`
-
+    const Price = styled.span`
+    
     font-size:40px;
-`
-
+    `
+    
 const FilterContainor= styled.div`
 display: flex;
 justify-content: space-between;
@@ -71,7 +123,7 @@ const FilterColOpt= styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
-
+cursor:pointer;
 `
 
 const FilterColor= styled.div`
@@ -115,49 +167,49 @@ cursor: pointer;
 
 `
 
-  return (
+
+
+
+return (
     <div>
       <Container>
         <Navbar/>
         <Baner/>
         <Wrapper>
 <ImageContainer>
-  <Image src={P1}/>
+  <Image />
 </ImageContainer>
 <InfoContainer>
-  <Title>Dress Old Fashion</Title>
-  <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore expedita accusantium inventore impedit nulla, veniam vel obcaecati tenetur nemo minus nisi placeat ipsam sed delectus. At corrupti expedita nesciunt quibusdam?</Description>
-<Price>200$</Price>
+  <Title>{product.title}</Title>
+  <Description>{product.desc}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam dolor voluptates veritatis aperiam minima similique voluptatibus nulla commodi obcaecati ipsa officia libero distinctio maxime, modi ullam a eaque architecto excepturi.</Description>
+<Price>${product.price}</Price>
 <FilterContainor>
   <Filter>
   <FilterTitle>
 Color
   </FilterTitle>
-  <FilterColOpt>
-  <FilterColor color="red"/>
-  <FilterColor  color="blue"/>
-  <FilterColor  color="gray"/>
-  </FilterColOpt>
+  <FilterColOpt >
+    <FilterColor color={product.color}/>
+    </FilterColOpt>
   </Filter>
   <Filter>
     <FilterTitle>Size</FilterTitle>
     <FilterSize>
-      <FilterSizeOpt>XL</FilterSizeOpt>
-      <FilterSizeOpt>L</FilterSizeOpt>
-      <FilterSizeOpt>M</FilterSizeOpt>
-      <FilterSizeOpt>S</FilterSizeOpt>
-      <FilterSizeOpt>XS</FilterSizeOpt>
+      {product && product.size?.map((v)=>(
+        <FilterSizeOpt key={v} onChange={(e)=>setSize(e.target.value)}>{size}</FilterSizeOpt>
+      
+        )) }
     </FilterSize>
   </Filter>
 </FilterContainor>
 <AddContainor>
 <AmountConatainor>
   <BtnOpt>
-<Remove/>
-<Amount>1</Amount>
-<Add/>
+<div className='btn btn-light'><Remove  onClick={()=>handleQuantity("desc")}/></div>
+<Amount>{quantity}</Amount>
+<div className='btn btn-light'><Add  onClick={()=>handleQuantity("ase")}/></div>
   </BtnOpt>
-<Button>ADD TO CART</Button>
+<Button onClick={handleClick}>ADD TO CART</Button>
 </AmountConatainor>
 </AddContainor>
 

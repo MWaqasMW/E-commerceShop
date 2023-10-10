@@ -18,7 +18,7 @@ ${tablets({display:"block"})}
 
   return (
     <Container>
-{categories.map(item => (
+{categories?.map(item => (
   <CategoryItem item={item} />
   ))}
   </Container>

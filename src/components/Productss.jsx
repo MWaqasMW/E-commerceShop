@@ -1,9 +1,10 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material'
 import React from 'react'
 import styled from 'styled-components'
-import { Rating } from '@mui/material'
 import { tablets } from '../responsive'
+import { Link } from 'react-router-dom'
 import "./slider.scss"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Productss = ({ item }) => {
     const Info = styled.div`
@@ -26,11 +27,12 @@ const Productss = ({ item }) => {
 }    
 
     `
-const Containor=styled.div`
+    const Containor = styled.div`
 align-items: center;
 width:100%;
-${tablets({width:"100%"})}
-
+${tablets({ width: "100%" })}
+margin:10px;
+background-color: light-gray;
 
 `
 
@@ -38,10 +40,10 @@ ${tablets({width:"100%"})}
     flex:1;
     margin: 2px;
     min-width: 250px;
-    max-width:370px;
-${tablets({maxWidth:"none"})}
+    max-width: 300px;
+${tablets({ maxWidth: "none" })}
 
-    height:350px;
+   height:400px;
     display: flex;
     align-items: center;
     background-color: #FAF9F6;
@@ -64,12 +66,11 @@ ${tablets({maxWidth:"none"})}
 
     `
     const Image = styled.img`
-    padding:10px;
-    height: 100%;
+height:100%;
     width:100%;
     z-index:2;
     object-fit: contain;
-   
+    background: transparent;
     `
 
     const Icon = styled.div`
@@ -88,24 +89,15 @@ ${tablets({maxWidth:"none"})}
     transform: scale(1.1);
 }
     `
-const MoreInfo=styled.div`
+    const MoreInfo = styled.div`
 flex:1;
 margin:8px;
-min-width: 250px;
-max-width:370px;
-${tablets({maxWidth:"none"})}
+width: 250px;
+
+${tablets({ maxWidth: "none" })}
 
 `
-const Desc=styled.div`
 
-text-align: center;
-
-`
-const Price=styled.span`
-font-size: 30px;
-
-`
-const Rate=styled.span``
 
 
 
@@ -114,34 +106,25 @@ const Rate=styled.span``
             <Containor>
                 <Circle />
                 <ImageCaontainor>
-                <Image src={item && item.img} />
-                <Info>
-                    <Icon>
-                        <ShoppingCartOutlined />
-                    </Icon>
-                    <Icon>
-                        <SearchOutlined />
-                    </Icon>
-                    <Icon>
-                        <FavoriteBorderOutlined />
-                    </Icon>
-                </Info>
+                    <Image src={item && item.img} />
+                    <Info>
+                        <Icon>
+                            <ShoppingCartOutlined />
+                        </Icon>
+                        <Link to={`/moreProducts/${item.categories[1]}`}>
+                        <Icon>
+                            <SearchOutlined />
+                        </Icon>
+                        </Link>
+                        <Icon>
+                            <FavoriteBorderOutlined />
+                        </Icon>
+                    </Info>
                 </ImageCaontainor>
-                <MoreInfo>
-
-                <Desc>
-                Lorem ips    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sapiente....
-                </Desc>
-                <div className='d-flex align-items-center mt-3 justify-content-center'  >
-                <Price>
-                    $80
-                </Price>
-                <Rate>
-                    <Rating name="read-only" value={3} readOnly />
-                </Rate>
-                </div>
-                </MoreInfo>
             </Containor>
+                <MoreInfo>
+                    <h3 className='d-flex justify-content-center'>{item && item.title.slice(0,13)+"..."}</h3>
+                </MoreInfo>
         </div>
     )
 }

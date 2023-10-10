@@ -3,15 +3,26 @@ import Navbar from '../components/Navbar'
 import Baner from '../components/Baner'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
-import p1 from '../components/images/grey-folded-t-shirt_125540-812-removebg-preview.png'
-import p2 from '../components/images/c6.avif'
-import p3 from '../components/images/c1.jpg'
-import p4 from '../components/images/troser-removebg-preview.png'
 import { tablets,mobile,sub_mobiles } from '../responsive'
 import "./style.scss"
 import { Add, Remove } from '@mui/icons-material'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StripeCheckout from 'react-stripe-checkout'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
 const Cart = () => {
+const KEY = process.env.STRIPE_KEY;
+
+
+const [stripeToken, setStripeToken] = useState(null);
+
+const onToken = (token) => {
+  setStripeToken(token);
+};
+console.log(stripeToken)
+
+
+    const cart = useSelector(state=>state.cart)
     const Conatainor = styled.div``
 
     const Wrapper = styled.div`
@@ -182,107 +193,41 @@ font-weight: 600;
 
                     <Bottom>
                         <Info>
-                            <Product>
+                            {cart.products.map(product=>(
+
+                                <Product>
                                 <ProductDetail>
                                     <Image>
-                                        <img src={p1} alt="img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                                        <img src={product.img} alt="img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                                     </Image>
                                     <Details>
-                                        <ProductName><b>Product:</b> GreyT-Shirt</ProductName>
-                                        <ProductId><b>ID:</b> 3-3544554444</ProductId>
-                                        <ProductColor color='gray' />
-                                        <ProductSize><b>Size:</b> 32.6</ProductSize>
+                                        <ProductName><b>Product:</b>{product.title}</ProductName>
+                                        <ProductId><b>ID:</b> {product._id}</ProductId>
+                                        <ProductColor color={product.color} />
+                                        <ProductSize><b>Size:</b> {product.size}</ProductSize>
                                     </Details>
                                 </ProductDetail>
                                 <PriceDatail>
                                     <AmountContainor>
                                         <Add />
-                                        <Amount><b>2</b></Amount>
+                                        <Amount><b>{product.quantity}</b></Amount>
                                         <Remove />
                                     </AmountContainor>
                                     <Price>
-                                        $ 20
+                                        ${product.price * product.quantity}
                                     </Price>
                                 </PriceDatail>
                             </Product>
+                            )
+                            )
+                            }
                             <Hr />
-                            <Product>
-                                <ProductDetail>
-                                    <Image>
-                                        <img src={p4} alt="img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-                                    </Image>
-                                    <Details>
-                                        <ProductName><b>Product:</b> GreyT-Shirt</ProductName>
-                                        <ProductId><b>ID:</b> 3-3544554444</ProductId>
-                                        <ProductColor color='gray' />
-                                        <ProductSize><b>Size:</b> 32.6</ProductSize>
-                                    </Details>
-                                </ProductDetail>
-                                <PriceDatail>
-                                    <AmountContainor>
-                                        <Add />
-                                        <Amount><b>2</b></Amount>
-                                        <Remove />
-                                    </AmountContainor>
-                                    <Price>
-                                        $ 20
-                                    </Price>
-                                </PriceDatail>
-                            </Product>
-                            <Hr />
-                            <Product>
-                                <ProductDetail>
-                                    <Image>
-                                        <img src={p4} alt="img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-                                    </Image>
-                                    <Details>
-                                        <ProductName><b>Product:</b> GreyT-Shirt</ProductName>
-                                        <ProductId><b>ID:</b> 3-3544554444</ProductId>
-                                        <ProductColor color='gray' />
-                                        <ProductSize><b>Size:</b> 32.6</ProductSize>
-                                    </Details>
-                                </ProductDetail>
-                                <PriceDatail>
-                                    <AmountContainor>
-                                        <Add />
-                                        <Amount><b>2</b></Amount>
-                                        <Remove />
-                                    </AmountContainor>
-                                    <Price>
-                                        $ 20
-                                    </Price>
-                                </PriceDatail>
-                            </Product>
-                            <Hr />
-                            <Product>
-                                <ProductDetail>
-                                    <Image>
-                                        <img src={p2} alt="img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-                                    </Image>
-                                    <Details>
-                                        <ProductName><b>Product:</b> GreyT-Shirt</ProductName>
-                                        <ProductId><b>ID:</b> 3-3544554444</ProductId>
-                                        <ProductColor color='gray' />
-                                        <ProductSize><b>Size:</b> 32.6</ProductSize>
-                                    </Details>
-                                </ProductDetail>
-                                <PriceDatail>
-                                    <AmountContainor>
-                                        <Add />
-                                        <Amount><b>2</b></Amount>
-                                        <Remove />
-                                    </AmountContainor>
-                                    <Price>
-                                        $ 20
-                                    </Price>
-                                </PriceDatail>
-                            </Product>
                         </Info>
                         <Summary>
                             <SumTitle>ORDER SUMMERY</SumTitle>
                             <SumItem>
                                 <SumText>SubTotal</SumText>
-                                <SumPrice>$ 70</SumPrice>
+                                <SumPrice>$ {cart.total}</SumPrice>
                             </SumItem>
                             <SumItem>
                                 <SumText>Estimated Shipping</SumText>
@@ -294,9 +239,23 @@ font-weight: 600;
                             </SumItem>
                             <SumItem type="total">
                                 <SumText >Total</SumText>
-                                <SumPrice>$ 70</SumPrice>
+                                <SumPrice>$ {cart.total}</SumPrice>
                             </SumItem>
+                            <StripeCheckout
+        name="Three Comma Co."
+        description="Big Data Stuff"
+        image="https://cdn11.bigcommerce.com/s-va5pcinq8p/images/stencil/394x197/nest_wraps_logo_1680582268__91327.original.png"
+        amount={cart.total*100}
+        token={onToken}
+        currency="USD"
+        stripeKey={KEY}
+        locale="US"
+        email="info@vidhub.co"
+        shippingAddress
+        billingAddress
+        >
                             <Button>Check Now</Button>
+      </StripeCheckout>
                         </Summary>
                     </Bottom>
                 </Wrapper>
@@ -312,83 +271,3 @@ export default Cart
 
 
 
-{/* <div className='bottom' >
-                    <div className="left">
-                        <div className='sub-left'>
-                        <div className='d-flex '>
-                       <div className="img"><img src={p1} alt="img" /></div>
-                        <div className="productDetail">
-                            <span><b>Product:</b>T-Shit</span>
-                            <span><b>Id:</b>783734637646647</span>
-                            <span className='color'></span>
-                            <span><b>Size:</b>34.4</span>
-                        </div>
-                        </div>
-                    <div className="center">
-                        <div className='d-flex align-items-center'>
-                        <Add/>
-                        <span>2</span>
-                        <Remove/>
-                        </div>
-                        <div className="price">$ 20</div>
-                            </div>
-                    </div>
-                    </div>
-                    
-         
-                    <div className="right">
-              
-         
-                    </div>
-                    
-
-
-                 </div>
-                 <div className='bottom'>
-                    <div className="left">
-                        <div className='sub-left'>
-                        <div className='d-flex '>
-                       <div className="img"><img src={p1} alt="img" /></div>
-                        <div className="productDetail">
-                            <span><b>Product:</b>T-Shit</span>
-                            <span><b>Id:</b>783734637646647</span>
-                            <span className='color'></span>
-                            <span><b>Size:</b>34.4</span>
-                        </div>
-                        </div>
-                    <div className="center">
-                        <div className='d-flex align-items-center'>
-                        <Add/>
-                        <span>2</span>
-                        <Remove/>
-                        </div>
-                        <div className="price">$ 20</div>
-                            </div>
-                    </div>
-                    </div>
-                    
-         
-                    <div className="right">
-              
-                        <h4 className='fs-2'>Order Summery</h4>
-                        <div className='summeryItem'>
-                        <div className='d-flex justify-content-between'>
-                        <div>Subtitle</div><span>$ 60</span>
-                        </div>
-                        <div className='d-flex justify-content-between'>
-                        <div>Estamited Shipping</div><span>$ 60</span>
-                        </div>
-                        <div className='d-flex justify-content-between'>
-                        <div >Shipping Discount</div><span>$ 60</span>
-                        </div>
-                        <div className='d-flex justify-content-between'>
-                        <div className='fs-2'>Total</div><span className='fs-2'>$ 60</span>
-                        </div>
-                        </div>
-                        <TopButton type='filled' className='text-center mt-19'>CHECKOUT NOW</TopButton>
-
-                    </div>
-                    
-
-
-                 </div> */}
