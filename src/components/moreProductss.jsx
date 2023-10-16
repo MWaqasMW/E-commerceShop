@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const MoreProductss = ({ item })=>{
   console.log(item)
   return (
-    
+    <div data-aos="fade-up">
     <Card sx={{width: 300,margin:1}}>
       <CardMedia
         sx={{height: 300, backgroundSize: 'contain', backgroundPosition: 'center'}}
@@ -40,6 +40,7 @@ const MoreProductss = ({ item })=>{
         <Button size="small my-btn2">Add to Cart</Button>
       </CardActions>
     </Card>
+    </div>
   );
 }
 

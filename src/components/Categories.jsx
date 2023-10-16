@@ -17,7 +17,7 @@ ${tablets({display:"block"})}
 
 
   return (
-    <Container>
+    <Container >
 {categories?.map(item => (
   <CategoryItem item={item} />
   ))}

@@ -176,10 +176,10 @@ return (
         <Navbar/>
         <Baner/>
         <Wrapper>
-<ImageContainer>
-  <Image />
+<ImageContainer data-aos="fade-right">
+  <Image  />
 </ImageContainer>
-<InfoContainer>
+<InfoContainer data-aos="fade-left">
   <Title>{product.title}</Title>
   <Description>{product.desc}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam dolor voluptates veritatis aperiam minima similique voluptatibus nulla commodi obcaecati ipsa officia libero distinctio maxime, modi ullam a eaque architecto excepturi.</Description>
 <Price>${product.price}</Price>

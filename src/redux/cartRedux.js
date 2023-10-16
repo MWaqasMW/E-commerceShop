@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+//actions 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -7,6 +8,7 @@ const cartSlice = createSlice({
     quantity: 0,
     total: 0,
   },
+  //reducers
   reducers: {
     addProduct: (state, action) => {
         state.quantity += 1;

@@ -44,9 +44,9 @@ const MoreProduct = ({ cat, filters, sort }) => {
     if (sort === "newest") {
       setFilterProduct((prev) => [...prev].sort((a, b) => a.timestamp - b.timestamp))
     } else if (sort === "asc") {
-      setFilterProduct((prev) => [...prev].sort((a, b) => a.price - b.price))
-    } else if (sort === "desc") {
       setFilterProduct((prev) => [...prev].sort((a, b) => b.price - a.price))
+    } else if (sort === "desc") {
+      setFilterProduct((prev) => [...prev].sort((a, b) => a.price - b.price))
     }
   }, [sort])
 

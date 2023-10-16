@@ -5,6 +5,7 @@ import S1 from './images/pants_1203-8310-removebg-preview.png'
 import S3 from './images/troser-removebg-preview.png'
 import S2 from './images/grey-folded-t-shirt_125540-812-removebg-preview.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 
 import "./slider.scss"
@@ -13,19 +14,23 @@ const Silder=(props)=>{
         {
             img:S2,
             heading: "Summer Sale",
-            description: "Probably the most random thing you have ever seen!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt."
-        
+            description: "Probably the most random thing you have ever seen!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt.",
+              cat:"men",
         },
         {
             img:S3,
             heading: "Kids Zone",
-            description: "Hello World!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt."
+            description: "Hello World!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt.",
+             cat:"kids",
+        
         }
         ,
         {
             img:S1,
             heading: "Big Deal",
-            description: "Hello World!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt."
+            description: "Hello World!     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, totam quos quam, quisquam mollitia quasi vel, numquam minima enim aliquam obcaecati id alias incidunt beatae reprehenderit? Doloremque harum eaque deserunt.",
+             cat:"women",
+       
         }
     ]
 
@@ -47,9 +52,11 @@ function Item(props)
             <div className='desSec'>
                 <h1  className='heading'>{props.item.heading}</h1>
             <p>{props.item.description}</p>
+            <Link to={`/products/${ props.item.cat}`}>
             <Button className="Check text-center">
                 Check it out!
             </Button>
+            </Link>
             </div>
 
             </div>

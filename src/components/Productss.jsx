@@ -103,7 +103,7 @@ ${tablets({ maxWidth: "none" })}
 
     return (
         <div className='p_containor'>
-            <Containor>
+            <Containor data-aos="fade-up">
                 <Circle />
                 <ImageCaontainor>
                     <Image src={item && item.img} />

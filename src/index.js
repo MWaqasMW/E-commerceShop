@@ -1,20 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-    <App />
-    </Provider>
-  </React.StrictMode>
-);
+import {store ,persistor} from './redux/store';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { PersistGate } from 'redux-persist/integration/react';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function Main() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      offset: 200,
+      easing: 'ease',
+    });
+
+    const handleScroll = () => {
+      AOS.refresh();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); 
+
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>
+  );
+}
+
+root.render(<Main />);
+
 reportWebVitals();

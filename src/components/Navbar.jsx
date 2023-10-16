@@ -8,10 +8,11 @@ import {mobile} from '../responsive'
 import {tablets} from '../responsive'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-const Navbar = () => {
-  const Container = styled.div`
-  height: 80px;
-  width:100%;
+import { login } from '../redux/apiCalls';
+import { useDispatch } from 'react-redux';
+const Container = styled.div`
+height: 80px;
+width:100%;
 margin-bottom:10px
   `;
   const Wrapper = styled.div`
@@ -31,14 +32,14 @@ ${mobile({padding:"4px"})}
   text-align: center;
   flex: 1;
   width="50px";
-
+  
   `
 
   const Logo = styled.img`
   ${mobile({width:"50px"})}
   width="50px"
   
- `
+  `
   const Language = styled.span`
 cursor: pointer;
 display: flex;
@@ -71,7 +72,7 @@ ${tablets({width:"100%"})}
 
 `
 
-  const Right = styled.div`
+const Right = styled.div`
 flex: 1;
 display:flex;
 align-items: center;
@@ -79,14 +80,24 @@ justify-content: end;
 
 `
   const MenuItem = styled.div`
-font-size: 14px;
+  font-size: 14px;
  cursor: pointer;
  padding: 5px;
+ 
+ 
+ `
+ const Navbar = () => {
+ const quantity = useSelector(state=>state.cart.quantity)
+ const user = useSelector(state=>state.user.currentUser)
+ const dispatch = useDispatch();
+ 
+//  const handleLogout=()=>{
+//    const {token, ...obj} =user;
+  
+//   }
+//   console.log(user)
 
 
-`
-const quantity = useSelector(state=>state.cart.quantity)
-console.log(quantity)
   return (
     <div>
       <Container>
@@ -107,15 +118,32 @@ console.log(quantity)
             </Logo>
           </Center>
           <Right>
-            <MenuItem>Register</MenuItem>
-            <MenuItem>Login</MenuItem>
-            <Link to={"/cart"}>
-            <MenuItem>  <Badge badgeContent={quantity} color="secondary">
-              <LocalGroceryStoreOutlinedIcon color="action" />
-            </Badge>
-            </MenuItem>
-            </Link>
-            </Right>
+  {user ? (
+    <>
+      <Link to={"/logout"}>
+        <MenuItem >Logout</MenuItem>
+      </Link>
+      <Link to="/cart">
+        <MenuItem>
+          <Badge badgeContent={quantity} color="secondary">
+            <LocalGroceryStoreOutlinedIcon color="action" />
+          </Badge>
+        </MenuItem>
+      </Link>
+    </>
+  ) : (
+    <>
+      <Link to="/login">
+        <MenuItem>Login</MenuItem>
+      </Link>
+      <Link to="/register">
+        <MenuItem>Register</MenuItem>
+      </Link>
+    </>
+  )}
+</Right>
+
+
         </Wrapper>
       </Container>
     </div>

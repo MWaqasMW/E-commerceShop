@@ -12,6 +12,9 @@ const Footer = () => {
     flex-wrap:wrap;
 ${tablets({display:"block"})}
 
+background-color: rgba(0, 0, 0, 0.05);
+
+
     `
     const Left = styled.div`
     flex:1;

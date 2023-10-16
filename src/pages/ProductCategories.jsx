@@ -6,7 +6,6 @@ import MoreProduct from '../components/moreProduct';
 import NewsLeter from '../components/NewsLeter';
 import Footer from '../components/Footer';
 import { useLocation } from 'react-router-dom';
-
 const Container = styled.div``;
 
 const Title = styled.h1`
