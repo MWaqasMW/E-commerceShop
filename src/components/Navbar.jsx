@@ -8,7 +8,7 @@ import {mobile} from '../responsive'
 import {tablets} from '../responsive'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../redux/apiCalls';
+import { logout } from '../redux/userSlice';
 import { useDispatch } from 'react-redux';
 const Container = styled.div`
 height: 80px;
@@ -91,11 +91,11 @@ justify-content: end;
  const user = useSelector(state=>state.user.currentUser)
  const dispatch = useDispatch();
  
-//  const handleLogout=()=>{
-//    const {token, ...obj} =user;
+ const handleLogout=()=>{
+  logout(dispatch())
   
-//   }
-//   console.log(user)
+  }
+  console.log(user)
 
 
   return (
@@ -120,9 +120,9 @@ justify-content: end;
           <Right>
   {user ? (
     <>
-      <Link to={"/logout"}>
-        <MenuItem >Logout</MenuItem>
-      </Link>
+
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+    
       <Link to="/cart">
         <MenuItem>
           <Badge badgeContent={quantity} color="secondary">

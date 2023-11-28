@@ -47,7 +47,7 @@ function Item(props)
 {
     return (
         <Paper>
-            <div className='containor p-4 mb-2'>
+            <div className='containor p-4 mb-2 '>
            <div className='img'><img  src={props.item.img} alt="" /></div> 
             <div className='desSec'>
                 <h1  className='heading'>{props.item.heading}</h1>
